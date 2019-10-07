@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Component that adds a line drawer in Scene view that connects the owning GameObject to another Transform.
-/// </summary>
-public class LineDrawer : MonoBehaviour
+namespace RedHoney.Utilities
 {
-    #region Inspector infos
     /// <summary>
-    /// Color of the line to draw.
+    /// Component that adds a line drawer in Scene view that connects the owning GameObject to another Transform.
     /// </summary>
-    [SerializeField] private Color lineColor = Color.red;
-    /// <summary>
-    /// Reference to the transform to aim.
-    /// </summary>
-    [SerializeField] private Transform objectToAim = null;
-    #endregion
-
-    #region Unity Events
-    /// <summary>
-    /// Unity Update method.
-    /// </summary>
-    private void Update()
+    public class LineDrawer : MonoBehaviour
     {
-        // If no transform to aim is specified, nothing to do.
-        if (!objectToAim) return;
+        #region Inspector infos
+        /// <summary>
+        /// Color of the line to draw.
+        /// </summary>
+        [SerializeField] private Color lineColor = Color.red;
+        /// <summary>
+        /// Reference to the transform to aim.
+        /// </summary>
+        [SerializeField] private Transform objectToAim = null;
+        #endregion
 
-        Debug.DrawLine(transform.position, objectToAim.position, lineColor);
+        #region Unity Events
+        /// <summary>
+        /// Unity Update method.
+        /// </summary>
+        private void Update()
+        {
+            // If no transform to aim is specified, nothing to do.
+            if (!objectToAim) return;
+
+            Debug.DrawLine(transform.position, objectToAim.position, lineColor);
+        }
+        #endregion
     }
-    #endregion
 }

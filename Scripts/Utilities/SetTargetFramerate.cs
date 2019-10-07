@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Simple MonoBehaviour to set the Application's targetFrameRate
-/// </summary>
-public class SetTargetFramerate : MonoBehaviour
+namespace RedHoney.Utilities
 {
-    [SerializeField]
-    [Tooltip("Sets the application's target frame rate.")]
-    int m_TargetFrameRate = 60;
-
     /// <summary>
-    /// Get or set the application's target frame rate.
+    /// Simple MonoBehaviour to set the Application's targetFrameRate
     /// </summary>
-    public int targetFrameRate
+    public class SetTargetFramerate : MonoBehaviour
     {
-        get { return m_TargetFrameRate; }
-        set
+        [SerializeField]
+        [Tooltip("Sets the application's target frame rate.")]
+        int m_TargetFrameRate = 60;
+
+        /// <summary>
+        /// Get or set the application's target frame rate.
+        /// </summary>
+        public int targetFrameRate
         {
-            m_TargetFrameRate = value;
+            get { return m_TargetFrameRate; }
+            set
+            {
+                m_TargetFrameRate = value;
+                SetFrameRate();
+            }
+        }
+
+        void SetFrameRate()
+        {
+            Application.targetFrameRate = targetFrameRate;
+        }
+
+        void Start()
+        {
             SetFrameRate();
         }
-    }
-
-    void SetFrameRate()
-    {
-        Application.targetFrameRate = targetFrameRate;
-    }
-
-    void Start()
-    {
-        SetFrameRate();
     }
 }

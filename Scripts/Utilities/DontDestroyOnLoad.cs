@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public class DontDestroyOnLoad : MonoBehaviour
+namespace RedHoney.Utilities
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DontDestroyOnLoad : MonoBehaviour
     {
-        DontDestroyOnLoad(this);
+        // Start is called before the first frame update
+        void Start()
+        {
+            DontDestroyOnLoad(this);
+        }
     }
 }
