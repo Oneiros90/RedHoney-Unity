@@ -1,11 +1,11 @@
 {
-    "name": "com.lms.boundingvolumes",
-    "displayName": "Bounding Volumes",
+    "name": "com.oneiros90.redhoney",
+    "displayName": "Red Honey",
     "version": "0.0.1",
     "unity": "2018.1",
-    "description": "Custom Bounding Volume structs, for situations where we cant use the ones provided by Unity.",
+    "description": "Just my personal repository of utils and helper code for Unity 3D (by Lorenzo Valente, @oneiros90)",
     "keywords": [
-        "maths",
+        "utils",
         "unity"
     ],
     "category": "Unity"
