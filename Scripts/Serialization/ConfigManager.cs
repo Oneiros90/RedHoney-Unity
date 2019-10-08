@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 
 namespace RedHoney.Serialization
 {
+    using Debug = Log.ContextDebug<ConfigManager>;
+
     /////////////////////////////////////////////////////////////////////////
     public class ConfigManager
     {

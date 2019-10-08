@@ -10,6 +10,8 @@ using UnityEditor.Animations;
 
 namespace RedHoney.StateMachine
 {
+    using Debug = Log.ContextDebug<StateMachineNodeController>;
+
     ///////////////////////////////////////////////////////////////////////////
     /// This MonoBehaviour exposes the events of an animator state as UnityEvents
     public class StateMachineNodeController : MonoBehaviour
@@ -35,15 +37,15 @@ namespace RedHoney.StateMachine
         {
             if (state == null)
             {
-                Debug.LogWarningFormat("Null state in {0}", name);
+                Debug.LogWarning($"Null state in {name}");
                 return;
             }
             state.OnEnter.AddListener(OnEnter.Invoke);
             state.OnExit.AddListener(OnExit.Invoke);
             if (DebugLogs)
             {
-                state.OnEnter.AddListener(() => Debug.LogFormat("Entering state {0}", name));
-                state.OnExit.AddListener(() => Debug.LogFormat("Exiting state {0}", name));
+                state.OnEnter.AddListener(() => Debug.Log($"Entering state {name}"));
+                state.OnExit.AddListener(() => Debug.Log($"Exiting state{name}"));
             }
         }
 

@@ -6,6 +6,8 @@ using System.Collections;
 
 namespace RedHoney.ScenesManagement
 {
+    using Debug = Log.ContextDebug<SceneLoader>;
+
     ///////////////////////////////////////////////////////////////////////////
     public class SceneLoader : MonoBehaviour
     {

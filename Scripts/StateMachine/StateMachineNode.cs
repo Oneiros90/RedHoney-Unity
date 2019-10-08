@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 namespace RedHoney.StateMachine
 {
+    using Debug = Log.ContextDebug<StateMachineNode>;
+
     ///////////////////////////////////////////////////////////////////////////
     /// This StateMachineBehaviour exposes enter/exit state events as UnityEvents
     [SharedBetweenAnimators]
@@ -17,7 +19,7 @@ namespace RedHoney.StateMachine
 
         private bool inStateMachine;
         private bool inState;
-        private bool debugLogs = false;
+        private readonly bool debugLogs = false;
 
         ///////////////////////////////////////////////////////////////////////////
         public static void InitializeAll(Animator animator)
@@ -45,7 +47,7 @@ namespace RedHoney.StateMachine
                 return;
 
             if (debugLogs)
-                Debug.LogFormat("[{0}, {1}] OnStateEnter", GetHashCode(), stateInfo.fullPathHash);
+                Debug.Log($"[{GetHashCode()}, {stateInfo.fullPathHash}] OnStateEnter");
 
             OnEnter.Invoke();
             inState = true;
@@ -62,7 +64,7 @@ namespace RedHoney.StateMachine
                 return;
 
             if (debugLogs)
-                Debug.LogFormat("[{0}, {1}] OnStateExit", GetHashCode(), stateInfo.fullPathHash);
+                Debug.Log($"[{GetHashCode()}, {stateInfo.fullPathHash}] OnStateExit");
 
             OnExit.Invoke();
             inState = false;
@@ -78,7 +80,7 @@ namespace RedHoney.StateMachine
             Debug.LogWarning("Warning: You are using a StateMachineNode in a SubStateMachine. You may encounter on unexpected behaviours");
 
             if (debugLogs)
-                Debug.LogFormat("[{0}, {1}] OnStateMachineEnter", GetHashCode(), stateMachinePathHash);
+                Debug.Log($"[{GetHashCode()}, {stateMachinePathHash}] OnStateMachineEnter");
 
             OnEnter.Invoke();
             inStateMachine = true;
@@ -92,7 +94,7 @@ namespace RedHoney.StateMachine
                 return;
 
             if (debugLogs)
-                Debug.LogFormat("[{0}, {1}] OnStateMachineExit", GetHashCode(), stateMachinePathHash);
+                Debug.Log($"[{GetHashCode()}, {stateMachinePathHash}] OnStateMachineExit");
 
             OnExit.Invoke();
             inStateMachine = false;

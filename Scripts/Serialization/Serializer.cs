@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
+
 
 namespace RedHoney.Serialization
 {
+    using Debug = Log.ContextDebug<Serializer>;
+
     ///////////////////////////////////////////////////////////////////////////
-    public static class Serializer
+    public class Serializer
     {
 
         ///////////////////////////////////////////////////////////////////////////
