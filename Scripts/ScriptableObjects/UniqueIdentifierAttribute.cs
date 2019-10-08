@@ -4,7 +4,7 @@
 using UnityEditor;
 #endif
 
-namespace RedHoney.Utilities
+namespace RedHoney.ScriptableObjects
 {
     ///////////////////////////////////////////////////////////////////////////
     public class UniqueIdentifierAttribute : PropertyAttribute { }
