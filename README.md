@@ -11,7 +11,7 @@ Just my personal repository of utils and helper code for Unity 3D
 {
   "dependencies": {
     "...": "...",
-    "com.oneiros90.redhoney": "https://github.com/Oneiros90/red-honey-unity.git",
+    "com.github.oneiros90.redhoneyunity": "https://github.com/Oneiros90/red-honey-unity.git",
   }
 }
 ```
