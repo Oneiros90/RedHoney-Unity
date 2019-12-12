@@ -7,16 +7,15 @@ using UnityEditor;
 using UnityEditor.Animations;
 #endif
 
-namespace RedHoney.StateMachine
+namespace RedHoney.Animator
 {
     ///////////////////////////////////////////////////////////////////////////
-    /// This component exposes the parameters of a state machine
+    /// This component exposes the parameters of an animator
     /// in order to control them from UnityEvents
-    [CreateAssetMenu(fileName = "StateMachineParameter", menuName = "State Machine/Parameter", order = 1)]
-    public class StateMachineParameter : ScriptableObject
+    public class AnimatorParameter : MonoBehaviour
     {
-        [Tooltip("The state machine")]
-        public StateMachine StateMachine;
+        [Tooltip("The animator")]
+        public UnityEngine.Animator Animator;
 
         [SerializeField]
         private string parameter;
@@ -29,7 +28,7 @@ namespace RedHoney.StateMachine
         public void SetTrigger()
         {
             if (parameterType == AnimatorControllerParameterType.Trigger)
-                StateMachine.Animator.SetTrigger(parameter);
+                Animator.SetTrigger(parameter);
         }
 
 
@@ -37,13 +36,13 @@ namespace RedHoney.StateMachine
         public void SetBoolValue(bool b)
         {
             if (parameterType == AnimatorControllerParameterType.Trigger && b)
-                StateMachine.Animator.SetTrigger(parameter);
+                Animator.SetTrigger(parameter);
             else if (parameterType == AnimatorControllerParameterType.Bool)
-                StateMachine.Animator.SetBool(parameter, b);
+                Animator.SetBool(parameter, b);
             else if (parameterType == AnimatorControllerParameterType.Int)
-                StateMachine.Animator.SetInteger(parameter, b ? 1 : 0);
+                Animator.SetInteger(parameter, b ? 1 : 0);
             else if (parameterType == AnimatorControllerParameterType.Float)
-                StateMachine.Animator.SetFloat(parameter, b ? 1.0f : 0.0f);
+                Animator.SetFloat(parameter, b ? 1.0f : 0.0f);
         }
 
 
@@ -51,9 +50,9 @@ namespace RedHoney.StateMachine
         public void SetIntValue(int i)
         {
             if (parameterType == AnimatorControllerParameterType.Int)
-                StateMachine.Animator.SetInteger(parameter, i);
+                Animator.SetInteger(parameter, i);
             else if (parameterType == AnimatorControllerParameterType.Float)
-                StateMachine.Animator.SetFloat(parameter, i);
+                Animator.SetFloat(parameter, i);
             else
                 SetBoolValue(i > 0);
         }
@@ -63,7 +62,7 @@ namespace RedHoney.StateMachine
         public void SetFloatValue(float f)
         {
             if (parameterType == AnimatorControllerParameterType.Float)
-                StateMachine.Animator.SetFloat(parameter, f);
+                Animator.SetFloat(parameter, f);
             else
                 SetIntValue((int)f);
         }
@@ -73,17 +72,17 @@ namespace RedHoney.StateMachine
         ///////////////////////////////////////////////////////////////////////////
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
-        [CustomEditor(typeof(StateMachineParameter))]
-        public class StateMachineParameterEditor : Editor
+        [CustomEditor(typeof(AnimatorParameter))]
+        public class AnimatorParameterEditor : Editor
         {
-            private SerializedProperty stateMachineProp;
+            private SerializedProperty animatorProp;
             private SerializedProperty parameterProp;
             private SerializedProperty parameterTypeProp;
 
             ///////////////////////////////////////////////////////////////////////////
             void OnEnable()
             {
-                stateMachineProp = serializedObject.FindProperty(nameof(StateMachine));
+                animatorProp = serializedObject.FindProperty(nameof(Animator));
                 parameterProp = serializedObject.FindProperty(nameof(parameter));
                 parameterTypeProp = serializedObject.FindProperty(nameof(parameterType));
             }
@@ -93,13 +92,13 @@ namespace RedHoney.StateMachine
             {
                 serializedObject.Update();
 
-                EditorGUILayout.PropertyField(stateMachineProp);
+                EditorGUILayout.PropertyField(animatorProp);
 
-                var parameter = target as StateMachineParameter;
-                var stateMachine = parameter.StateMachine;
-                if (stateMachine)
+                var parameter = target as AnimatorParameter;
+                var animator = parameter.Animator;
+                if (animator)
                 {
-                    var controller = stateMachine.Controller as AnimatorController;
+                    var controller = animator.runtimeAnimatorController as AnimatorController;
                     if (controller)
                     {
                         GUILayout.BeginHorizontal();
