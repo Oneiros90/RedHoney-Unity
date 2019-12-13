@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using UnityEditor;
 
 public class ResetTransform
@@ -17,3 +19,4 @@ public class ResetTransform
         }
     }
 }
+#endif
